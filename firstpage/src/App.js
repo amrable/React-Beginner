@@ -55,26 +55,21 @@ class App extends Component {
     });
   }
 
-  keyHandler = (event) => {
+  keyHandler = (event , index) => {
 
-    this.setState({
+    const personIndex = this.state.persons.findIndex( p=>{
+      return p.id===index;
+    } );
 
-      persons: [
-        {
-          id: "ewqe3",
-          name: event.target.value,
-          hobby: "N/A"
-        }, {
-          id: "34wef",
-          name: "Omar",
-          hobby: "N/A"
-        }, {
-          id: "wef23",
-          name: "Khaled",
-          hobby: "N/A"
-        }
-      ]
-    });
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+    person.name=event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex]=person;
+
+    this.setState({persons:persons});
 
   }
 
@@ -92,7 +87,7 @@ class App extends Component {
     let personsArray = null;
     if (this.state.show) {
       personsArray = (<div>
-        {this.state.persons.map( (p,index) => {return <Person click={()=> this.deleteHandler(index)} name={p.name} hobby={p.hobby} />})}
+        {this.state.persons.map( (p,index) => {return <Person click={()=> this.deleteHandler(index)} change={ (event) => this.keyHandler(event , p.id)} name={p.name} hobby={p.hobby} key={p.id}/>})}
 
       </div>);
     }
