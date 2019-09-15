@@ -4,11 +4,14 @@ const person = () => {
 
   return (
     <div>
+
       <h3>I'm PersonNAme</h3>
-      <p>I love something </p> 
+      <p>I love something </p>
 
     </div>
   );
 
 
 }
+
+export default person;
