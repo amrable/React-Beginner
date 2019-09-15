@@ -1,9 +1,10 @@
 import React from 'react';
+import './Person.css';
 
 const person = () => {
 
   return (
-    <div>
+    <div className="Person">
 
       <h3>I'm PersonNAme</h3>
       <p>I love something </p>
