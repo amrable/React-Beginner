@@ -20,7 +20,8 @@ class App extends Component {
         name: "N/A",
         hobby: "N/A"
       }
-    ]
+    ],
+    show: false
 
   };
 
@@ -43,8 +44,15 @@ class App extends Component {
           hobby: "N/A"
         }
       ]
+
     });
 
+  }
+  toggleHandler = () => {
+    const current = this.state.show;
+    this.setState({
+      show: !current
+    });
   }
 
   keyHandler = (event) => {
@@ -71,14 +79,25 @@ class App extends Component {
   }
 
   render() {
+
+    let personsArray = null;
+    if (this.state.show) {
+      personsArray=(<div>
+        <Person change={this.keyHandler} name={this.state.persons[0].name} hobby={this.state.persons[0].hobby}/>
+        <Person name={this.state.persons[1].name} hobby={this.state.persons[1].hobby}/>
+        <Person name={this.state.persons[2].name} hobby={this.state.persons[2].hobby}/>
+      </div>);
+    }
+
     return (<div className="App">
       <h1>It is a React.js Page</h1>
       <button onClick={this.startHandler}>
         Start
       </button>
-      <Person change={this.keyHandler} name={this.state.persons[0].name} hobby={this.state.persons[0].hobby}/>
-      <Person name={this.state.persons[1].name} hobby={this.state.persons[1].hobby}/>
-      <Person name={this.state.persons[2].name} hobby={this.state.persons[2].hobby}/>
+      <button onClick={this.toggleHandler}>
+        Toggle
+      </button>
+      {personsArray}
     </div>);
   }
 
