@@ -8,6 +8,7 @@ const person = (props) => {
 
       <h3>I'm {props.name}</h3>
       <p>I love {props.hobby} </p>
+      <input type="text" />
 
     </div>
   );
