@@ -78,25 +78,37 @@ class App extends Component {
 
   }
 
+  deleteHandler=(index)=>{
+
+    const persons = [...this.state.persons];
+    persons.splice(index,1);
+    this.setState(
+      {persons:persons});
+
+  }
+
   render() {
 
     let personsArray = null;
     if (this.state.show) {
-      personsArray=(<div>
-        <Person change={this.keyHandler} name={this.state.persons[0].name} hobby={this.state.persons[0].hobby}/>
-        <Person name={this.state.persons[1].name} hobby={this.state.persons[1].hobby}/>
-        <Person name={this.state.persons[2].name} hobby={this.state.persons[2].hobby}/>
+      personsArray = (<div>
+        {this.state.persons.map( (p,index) => {return <Person click={()=> this.deleteHandler(index)} name={p.name} hobby={p.hobby} />})}
+
       </div>);
     }
 
     return (<div className="App">
+
       <h1>It is a React.js Page</h1>
+
       <button onClick={this.startHandler}>
         Start
       </button>
+
       <button onClick={this.toggleHandler}>
         Toggle
       </button>
+
       {personsArray}
     </div>);
   }
