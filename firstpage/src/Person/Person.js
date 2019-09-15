@@ -10,7 +10,7 @@ const person = (props) => {
       <p>I love {props.hobby} </p>
       <p onClick={props.click}>Click me to delete</p>
       <p>{props.children}</p>
-      <input type="text" onChange={props.change} value={props.name}/>
+      <input type="text" onChange={props.change} value={props.hobby}/>
 
     </div>
   );
